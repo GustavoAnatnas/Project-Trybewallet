@@ -9,7 +9,7 @@ export default function WALLET_REDUCER(state = INITIAL_STATE, action) {
   case 'CURRENCIES':
     return {
       ...state,
-      currencies: action.payload,
+      currencies: Object.keys(action.payload).filter((coin) => coin !== 'USDT'),
     };
   case 'EXPENSES':
     return {
