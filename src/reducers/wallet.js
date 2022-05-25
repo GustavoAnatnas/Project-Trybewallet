@@ -4,19 +4,18 @@ const INITIAL_STATE = {
   expenses: [],
 };
 
-export default function WALLET_REDUCER(state = INITIAL_STATE, action) {
+const WALLET_REDUCER = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case 'CURRENCIES':
     return {
       ...state,
-      currencies: Object.keys(action.payload).filter((coin) => coin !== 'USDT'),
-    };
+      currencies: Object.keys(action.payload).filter((coin) => coin !== 'USDT') };
   case 'EXPENSES':
     return {
       ...state,
-      expenses: action.payload,
-    };
+      expenses: [...state.expenses, { id: state.expenses.length, ...action.payload }] };
   default:
     return state;
   }
-}
+};
+export default WALLET_REDUCER;
